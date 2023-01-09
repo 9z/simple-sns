@@ -4,7 +4,7 @@
   "description": "간단한 sns 기능 구현",
   "main": "app",
   "scripts": {
-    "start": "nodemone app"
+    "start": "nodemon app"
   },
   "author": "Jackson",
   "license": "ISC",
