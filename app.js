@@ -18,6 +18,7 @@ nunjucks.configure('views', {
     watch: true
 });
 sequelize.sync({
+    // true일 경우 테이블이 있어도 DROP 하고 새로 만듬
     force: false
 })
     .then(() => {
