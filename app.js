@@ -5,10 +5,12 @@ const path = require('path');
 const session = require('express-session');
 const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
+const passport = require('passport');
 
 dotenv.config();
 const pageRouter = require('./routes/page');
 const { sequelize } = require('./models');
+const passportConfig = require('./passport');
 
 const app = express();
 app.set('port', process.env.PORT || 8001);
@@ -42,6 +44,12 @@ app.use(session({
         secure: false,
     }
 }));
+// req 객체에 passport 설정을 심음
+app.use(passport.initialize());
+// req.session 객체에 passport 정보를 저장
+// req.session 객체는 express-session 객체에서 생성하는 것이라서 
+// express-session 미들웨어 뒤쪽에 위치해야함
+app.use(passport.session());
 
 app.use('/', pageRouter);
 
