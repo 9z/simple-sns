@@ -9,6 +9,8 @@ module.exports = () => {
         usernameField: 'email',
         passwordField: 'password',
         passReqToCallback: false
+        // done 이 호출되고 나면 auth 컨트롤러에서 호출한 passport.authenticate의 콜백 함수에서 나머지 로직이 실행됨
+        // controller/auth.js 의 login 함수로 실행 컨텍스트 이동
     }, async (email, password, done) => {
         try {
             const exUser = await User.findOne({ where: { email } });
