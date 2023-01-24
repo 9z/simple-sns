@@ -5,7 +5,7 @@ class User extends Sequelize.Model {
         User.init({
             eamil: {
                 type: Sequelize.STRING(40),
-                allowNull: false,
+                allowNull: true,
                 unique: true
             },
             nick: {
@@ -14,9 +14,9 @@ class User extends Sequelize.Model {
             },
             password: {
                 type: Sequelize.STRING(100),
-                allowNull: false,
+                allowNull: true,
             },
-            provide: {
+            provider: {
                 type: Sequelize.ENUM('local', 'kakao'),
                 allowNull: false,
                 defaultValue: 'local'
