@@ -7,6 +7,7 @@ const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
 const passport = require('passport');
 
+// .env 파일을 읽어서 process.env 객체에 넣어줌
 dotenv.config();
 const pageRouter = require('./routes/page');
 const authRouter = require('./routes/auth');
