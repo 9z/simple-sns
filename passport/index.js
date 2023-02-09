@@ -15,7 +15,18 @@ module.exports = () => {
     // deserializeUser의 첫번째 인자가 됨
     // serializeUser에서 전달 받은 id로 DB에 사용자 정보 조회
     passport.deserializeUser((id, done) => {
-        User.findOne({ where: { id } })
+        User.findOne({
+            where: { id },
+            include: [{
+                model: User,
+                attributes: ['id', 'nick'],
+                as: 'Followers'
+            }, {
+                model: User,
+                attributes: ['id', 'nick'],
+                as: 'Followings'
+            }]
+        })
             // 조회한 정보를 req.user에 저장
             .then(user => done(null, user))
             .catch(err => done(err));
