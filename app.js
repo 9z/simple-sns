@@ -62,6 +62,7 @@ app.use('/auth', authRouter);
 app.use('/post', postRouter);
 app.use('/user', userRouter);
 
+// 정의되지 않은 요청이 들어올 경우 에러 처리 미들웨어로 넘김
 app.use((req, res, next) => {
     const error = new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
     error.status = 404;
