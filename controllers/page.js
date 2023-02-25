@@ -34,10 +34,7 @@ exports.renderHashtag = async (req, res, next) => {
     }
     try {
         const hashtag = await Hashtag.findOne({ where: { title: query } });
-        const posts = [];
-        if (hashtag) {
-            posts.push(await hashtag.getPosts({ include: [{ model: User }] }));
-        }
+        const posts = hashtag ? await hashtag.getPosts({ include: [{ model: User }] }) : [];
 
         return res.render('main', {
             title: `${query} | NodeBird`,
